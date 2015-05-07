@@ -1,0 +1,11 @@
+[% META title = 'Manual Form Post Update' -%]
+ 
+<form method="post" action="[%
+        c.uri_for(c.controller.action_for('update'), [post.id]) %]">
+<table>
+  <tr><td>postname:</td><td><input type="text" name="postname" value=[% post.postname %]></td></tr>
+  <tr><td>body:</td><td><input type="text" name="body" value=[% post.body %]></td></tr>
+
+</table>
+<input type="submit" name="Submit" value="Submit">
+</form>

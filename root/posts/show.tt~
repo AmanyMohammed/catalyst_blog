@@ -1,0 +1,41 @@
+<p>
+
+TiTle: [% post.postname %]
+
+
+</p>
+<p>
+
+BoDy: [% post.body %]
+
+
+</p>
+
+<table border="1">
+<tr><th>Id</th><th>comment</th><th>action</th></tr>
+
+[% FOREACH comment IN comments -%]
+<tr>
+[% IF post.id == comment.postid %]
+<td>[% comment.id %]</td>
+
+<td>[% comment.body %]</td>
+
+<td>
+	<a href="[%
+        c.uri_for(c.controller.action_for('deletecomment'), [comment.id]) %]">Delete Comment</a>
+
+</td>
+</tr>
+[% END -%]
+[% END -%]
+</table>
+
+<form method="post" action="[%
+        c.uri_for(c.controller.action_for('comment'), [post.id]) %]">
+<table>
+  <tr><td>comment:</td><td><input type="text" name="body"></td></tr>
+  <input type="hidden" name="createdby" value=[%post.createdby.id%]>
+</table>
+<input type="submit" name="Submit" value="Submit">
+</form>
